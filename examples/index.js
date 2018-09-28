@@ -5,7 +5,7 @@ import A from '../src'
 
 class App extends Component {
   render() {
-    return <A url="//cdn.mifanxing.com/mifan/img/mobile-banner.jpg" className="sdf" style={{width: '100%'}} />
+    return <A src="//cdn.mifanxing.com/mifan/img/mobile-banner.jpg" className="sdf" style={{width: '100%'}} />
   }
 }
 

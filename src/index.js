@@ -5,22 +5,22 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: props.defaultUrl,
+      src: props.defaultUrl,
     }
   }
 
   componentDidMount() {
-    const { url } = this.props
+    const { src } = this.props
 
     this.img.onload = () => {
       this.setState({
-        url,
+        src,
       })
     }
   }
 
   render() {
-    const { url } = this.state
+    const { src } = this.state
 
     const {
       alt,
@@ -31,7 +31,7 @@ export default class App extends Component {
 
     return (
       <img
-        src={url}
+        src={src}
         alt={alt}
         style={style}
         title={title}
@@ -43,6 +43,7 @@ export default class App extends Component {
 }
 
 App.propTypes = {
+  src: PropTypes.string,
   alt: PropTypes.string,
   title: PropTypes.string,
   style: PropTypes.object,
@@ -51,6 +52,7 @@ App.propTypes = {
 }
 
 App.defaultProps = {
+  src: '',
   style: {},
   alt: 'img',
   title: 'img',
