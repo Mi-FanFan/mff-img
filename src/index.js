@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-export default class App extends Component {
+export default class Img extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,6 +19,11 @@ export default class App extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { src } = this.state
+    return src !== nextState.src
+  }
+
   render() {
     const { src } = this.state
 
@@ -27,7 +32,12 @@ export default class App extends Component {
       title,
       style,
       className,
+      ...props
     } = this.props
+
+    const extraProps = Object.assign({}, props)
+
+    delete extraProps.defaultUrl
 
     return (
       <img
@@ -37,12 +47,13 @@ export default class App extends Component {
         title={title}
         className={className}
         ref={img => this.img = img}
+        {...extraProps}
       />
     )
   }
 }
 
-App.propTypes = {
+Img.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string,
   title: PropTypes.string,
@@ -51,7 +62,7 @@ App.propTypes = {
   defaultUrl: PropTypes.string,
 }
 
-App.defaultProps = {
+Img.defaultProps = {
   src: '',
   style: {},
   alt: 'img',
